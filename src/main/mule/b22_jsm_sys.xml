@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="0b7e0bf1-6ff5-49a1-a947-58e3f8ff2e6c" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="b22_jsm_sysFlow" doc:id="3816f8df-3bd6-478e-82a0-83f67e547088" >
+		<http:listener doc:name="Listener" doc:id="8351347b-60da-442e-b260-dad41baec0f5" config-ref="HTTP_Listener_config" path="/jms"/>
+		<db:select doc:name="Select" doc:id="d6236661-d1d2-4e24-b3be-0afe05019365" >
+			<db:sql ><![CDATA[select * from world.city
+
+limit 6]]></db:sql>
+		</db:select>
+	</flow>
+</mule>
